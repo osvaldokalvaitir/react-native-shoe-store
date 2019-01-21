@@ -1,16 +1,8 @@
-# ReactJS Front
+# React Native Mobile
 
-Aplicação em ReactJS executando um CRUD na [Node Express API](https://github.com/osvaldokalvaitir/node-express-api).
+Aplicação em React Native executando um CRUD na [Node Express API](https://github.com/osvaldokalvaitir/node-express-api).
 
 ## Índice
-
-- [Telas](#telas)
-
-  - [Principal](#principal)
-
-  - [Produto](#produto)
-
-- [Rotas](#rotas)
 
 - [Desenvolvimento](#desenvolvimento)
 
@@ -22,25 +14,9 @@ Aplicação em ReactJS executando um CRUD na [Node Express API](https://github.c
 
   - [Bibliotecas](#bibliotecas)
 
+  - [Erros Comuns](#erros-comuns)
+
   - [APIs](#apis)
-
-## Telas
-
-### Principal
-
-É a tela onde estão todos os dados vindos da API, podendo adicionar novos dados.
-
-### Produto
-
-É a tela onde encontram-se os detalhes do produto selecionado, podendo editar ou excluir o produto.
-
-## Rotas
-
-- Busca todos os produtos
-- Busca somente dados de um produto selecionado
-- Adiciona novos produtos
-- Edita dados de produtos existentes
-- Exclui produtos existentes
 
 ## Desenvolvimento
 
@@ -54,23 +30,25 @@ Clique [aqui](https://github.com/osvaldokalvaitir/projects-settings/blob/master/
 
 ### Execução do Projeto
 
-Clique [aqui](https://github.com/osvaldokalvaitir/projects-settings/blob/master/nodejs/libs/create-react-app.md) e siga a Execução de Projeto.
+Clique [aqui](https://github.com/osvaldokalvaitir/projects-settings/blob/master/nodejs/libs/react-native-cli.md) e siga a Execução de Projeto.
 
 ### Bibliotecas
 
-- [Axios](https://github.com/osvaldokalvaitir/projects-settings/blob/master/nodejs/libs/axios.md)
+- [React Navigation](https://github.com/osvaldokalvaitir/projects-settings/blob/master/nodejs/libs/react-navigation.md)
 
-- [Create React App](https://github.com/osvaldokalvaitir/projects-settings/blob/master/nodejs/libs/create-react-app.md)
+### Erros Comuns
 
-- [eslint-config-airbnb](https://github.com/osvaldokalvaitir/projects-settings/blob/master/nodejs/libs/eslint-config-airbnb.md)
+No desenvolvimento, depois de instalar uma biblioteca que use recursos nativos (ex: a biblioteca de ícones) será necessário executar o comando abaixo e reiniciar a emulação do projeto:
 
-- [eslint-plugin-import](https://github.com/osvaldokalvaitir/projects-settings/blob/master/nodejs/libs/eslint-plugin-import.md)
+```
+react-native link nome-da-biblioteca
+```
 
-- [eslint-plugin-jsx-a11y](https://github.com/osvaldokalvaitir/projects-settings/blob/master/nodejs/libs/eslint-plugin-jsx-a11y.md)
+No desenvolvimento, se ocorrer um erro de módulo não encontrado, será necessário fechar a janela de execução do Metro Bundler, executar o comando abaixo e reiniciar a emulação do projeto:
 
-- [eslint-plugin-react](https://github.com/osvaldokalvaitir/projects-settings/blob/master/nodejs/libs/eslint-plugin-react.md)
-
-- [React Router](https://github.com/osvaldokalvaitir/projects-settings/blob/master/nodejs/libs/react-router.md)
+```
+react-native start --reset-cache
+```
 
 ### APIs
 

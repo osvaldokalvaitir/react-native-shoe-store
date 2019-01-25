@@ -1,17 +1,23 @@
 import React, { Component } from "react";
 import api from "../services/api";
 
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  StyleSheet
+} from "react-native";
 
 export default class Main extends Component {
   static navigationOptions = {
-    title: "JSHunt"
+    title: "Produtos"
   };
 
   state = {
     productInfo: {},
     docs: [],
-    page: 1,
+    page: 1
   };
 
   componentDidMount() {
@@ -33,7 +39,7 @@ export default class Main extends Component {
   loadMore = () => {
     const { page, productInfo } = this.state;
 
-    if (page  === productInfo.pages) return;
+    if (page === productInfo.pages) return;
 
     const pageNumber = page + 1;
 
@@ -45,20 +51,28 @@ export default class Main extends Component {
       <Text style={styles.productTitle}>{item.title}</Text>
       <Text style={styles.productDescription}>{item.description}</Text>
 
-      <TouchableOpacity 
-        style={styles.productButton} 
+      <TouchableOpacity
+        style={styles.productButton}
         onPress={() => {
           this.props.navigation.navigate("Product", { product: item });
         }}
       >
         <Text style={styles.productButtonText}>Acessar</Text>
-      </TouclableOpacity>
+      </TouchableOpacity>
     </View>
   );
 
   render() {
     return (
       <View style={styles.container}>
+        <TouchableOpacity
+          style={styles.addproductButton}
+          onPress={() => {
+            this.props.navigation.navigate("Product", { product: {} });
+          }}
+        >
+          <Text style={styles.addproductButtonText}>Adicionar</Text>
+        </TouchableOpacity>
         <FlatList
           contentContainerStyle={styles.list}
           data={this.state.docs}
@@ -118,6 +132,23 @@ const styles = StyleSheet.create({
   productButtonText: {
     fontSize: 16,
     color: "#DA552F",
-    fontWeight: "bold",
+    fontWeight: "bold"
   },
+
+  addproductButton: {
+    height: 42,
+    borderRadius: 5,
+    borderWidth: 2,
+    borderColor: "#DA552F",
+    backgroundColor: "#DA552F",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 20
+  },
+
+  addproductButtonText: {
+    fontSize: 16,
+    color: "#FFF",
+    fontWeight: "bold"
+  }
 });

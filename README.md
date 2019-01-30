@@ -14,8 +14,6 @@ Aplicação em React Native executando um CRUD na [Node Express API](https://git
 
   - [Bibliotecas](#bibliotecas)
 
-  - [Erros Comuns](#erros-comuns)
-
   - [APIs](#apis)
 
 ## Desenvolvimento
@@ -39,20 +37,6 @@ Clique [aqui](https://github.com/osvaldokalvaitir/projects-settings/blob/master/
 - [React Navigation](https://github.com/osvaldokalvaitir/projects-settings/blob/master/nodejs/libs/react-navigation.md)
 
 - [react-native-cli](https://github.com/osvaldokalvaitir/projects-settings/blob/master/nodejs/libs/react-native-cli.md)
-
-### Erros Comuns
-
-No desenvolvimento, depois de instalar uma biblioteca que use recursos nativos (ex: a biblioteca de ícones) será necessário executar o comando abaixo e reiniciar a emulação do projeto:
-
-```
-react-native link nome-da-biblioteca
-```
-
-No desenvolvimento, se ocorrer um erro de módulo não encontrado, será necessário fechar a janela de execução do Metro Bundler, executar o comando abaixo e reiniciar a emulação do projeto:
-
-```
-react-native start --reset-cache
-```
 
 ### APIs
 

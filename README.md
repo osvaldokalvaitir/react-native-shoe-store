@@ -1,6 +1,6 @@
-# React Native Mobile
+# React Native - Mobile
 
-Aplicação em React Native executando um CRUD na [Node Express API](https://github.com/osvaldokalvaitir/node-express-api).
+Aplicação em React Native executando um CRUD na [Node - Express API](https://github.com/osvaldokalvaitir/node-express-api).
 
 ## Índice
 
@@ -44,4 +44,4 @@ Clique [aqui](https://github.com/osvaldokalvaitir/projects-settings/blob/master/
 
 ### APIs
 
-- [Node Express API](https://github.com/osvaldokalvaitir/node-express-api)
+- [Node - Express API](https://github.com/osvaldokalvaitir/node-express-api)

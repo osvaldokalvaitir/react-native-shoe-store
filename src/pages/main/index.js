@@ -50,7 +50,7 @@ class Main extends Component {
       <TouchableOpacity
         style={styles.productButton}
         onPress={() => {
-          this.props.navigation.navigate('Product', { product: item });
+          this.props.navigation.navigate('Product', { id: item._id });
         }}
       >
         <Text style={styles.productButtonText}>Acessar</Text>
@@ -64,7 +64,7 @@ class Main extends Component {
         <TouchableOpacity
           style={styles.addProductButton}
           onPress={() => {
-            this.props.navigation.navigate('Product', { product: {} });
+            this.props.navigation.navigate('Product', {});
           }}
         >
           <Text style={styles.addProductButtonText}>Adicionar</Text>

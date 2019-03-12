@@ -1,5 +1,15 @@
 # React Native - Mobile
 
+[![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/osvaldokalvaitir/react-native-mobile/blob/master/LICENSE)
+![](https://img.shields.io/github/package-json/v/osvaldokalvaitir/react-native-mobile.svg)
+![](https://img.shields.io/github/last-commit/osvaldokalvaitir/react-native-mobile.svg?color=red)
+![](https://img.shields.io/github/languages/top/osvaldokalvaitir/react-native-mobile.svg?color=yellow)
+![](https://img.shields.io/github/languages/count/osvaldokalvaitir/react-native-mobile.svg?color=lightgrey)
+![](https://img.shields.io/github/languages/code-size/osvaldokalvaitir/react-native-mobile.svg)
+![](https://img.shields.io/github/repo-size/osvaldokalvaitir/react-native-mobile.svg?color=blueviolet)
+[![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-1f425f.svg)](https://code.visualstudio.com/)
+![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)
+
 Aplicação em React Native executando um CRUD na [Node - Express API](https://github.com/osvaldokalvaitir/node-express-api).
 
 ## Índice

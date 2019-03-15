@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import { View, Text } from "react-native";
+import { View, Text } from 'react-native';
 
 class Product extends Component {
   state = {
-    product: {}
+    product: {},
   };
 
   componentDidMount() {
@@ -28,7 +28,7 @@ class Product extends Component {
 }
 
 Product.navigationOptions = ({ navigation }) => ({
-  title: navigation.state.params.product.title
+  title: navigation.state.params.product.title,
 });
 
 export default Product;

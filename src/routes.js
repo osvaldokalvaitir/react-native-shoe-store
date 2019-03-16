@@ -1,21 +1,24 @@
 import { createAppContainer, createStackNavigator } from 'react-navigation';
+import colors from '~/styles';
 
-import Main from './pages/main';
-import Product from './pages/product';
+import Main from '~/pages/main';
+import Product from '~/pages/product';
 
 const Routes = createAppContainer(
   createStackNavigator(
     {
-      Main,
-      Product,
+      Main: { screen: Main },
+      Product: { screen: Product },
     },
     {
-      navigationOptions: {
+      defaultNavigationOptions: {
         headerStyle: {
-          backgroundColor: '#DA552F',
+          backgroundColor: colors.primaryDark,
         },
-        headerTintColor: '#FFF',
+        headerTintColor: colors.white,
+        headerBackTitle: null,
       },
+      headerLayoutPreset: 'center',
     },
   ),
 );

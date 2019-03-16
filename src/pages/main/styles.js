@@ -1,68 +1,69 @@
 import { StyleSheet } from 'react-native';
+import colors from '~/styles';
 
 const styles = StyleSheet.create({
+  addProductButton: {
+    alignItems: 'center',
+    backgroundColor: colors.primary,
+    borderColor: colors.primary,
+    borderRadius: 5,
+    borderWidth: 2,
+    height: 42,
+    justifyContent: 'center',
+    margin: 20,
+  },
+
+  addProductButtonText: {
+    color: colors.white,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+
   container: {
+    backgroundColor: colors.lighter, // '#fafafa'
     flex: 1,
-    backgroundColor: '#fafafa',
   },
 
   list: {
     padding: 20,
   },
 
-  productContainer: {
-    backgroundColor: '#FFF',
-    borderWidth: 1,
-    borderColor: '#DDD',
-    borderRadius: 5,
-    padding: 20,
-    marginBottom: 20,
-  },
-
-  productTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#333',
-  },
-
-  productDescription: {
-    fontSize: 16,
-    color: '#999',
-    marginTop: 5,
-    lineHeight: 24,
-  },
-
   productButton: {
-    height: 42,
+    alignItems: 'center',
+    backgroundColor: colors.transparent,
+    borderColor: colors.primary,
     borderRadius: 5,
     borderWidth: 2,
-    borderColor: '#DA552F',
-    backgroundColor: 'transparent',
+    height: 42,
     justifyContent: 'center',
-    alignItems: 'center',
     marginTop: 10,
   },
 
   productButtonText: {
+    color: colors.primary,
     fontSize: 16,
-    color: '#DA552F',
     fontWeight: 'bold',
   },
 
-  addProductButton: {
-    height: 42,
+  productContainer: {
+    backgroundColor: colors.white,
+    borderColor: colors.light,
     borderRadius: 5,
-    borderWidth: 2,
-    borderColor: '#DA552F',
-    backgroundColor: '#DA552F',
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 20,
+    borderWidth: 1,
+    marginBottom: 20,
+    padding: 20,
   },
 
-  addProductButtonText: {
+  productDescription: {
+    color: colors.regular,
     fontSize: 16,
-    color: '#FFF',
+    lineHeight: 24,
+    marginTop: 5,
+  },
+
+  productTitle: {
+    color: colors.darker,
+    fontSize: 18,
     fontWeight: 'bold',
   },
 });

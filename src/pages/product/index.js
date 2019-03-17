@@ -7,15 +7,17 @@ import api from '~/services/api';
 
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 
-import styles from '~/styles';
+import styles from './styles';
 
 class Product extends Component {
   static propTypes = {
-    // match: PropTypes.shape({
-    //   params: PropTypes.shape({
-    //     id: PropTypes.string,
-    //   }),
-    // }).isRequired,
+    navigation: PropTypes.shape({
+      state: PropTypes.shape({
+        params: PropTypes.shape({
+          id: PropTypes.string,
+        }),
+      }),        
+    }).isRequired,
     values: PropTypes.shape({
       title: PropTypes.string,
       description: PropTypes.string,
@@ -30,6 +32,7 @@ class Product extends Component {
     }).isRequired,
     handleSubmit: PropTypes.func.isRequired,
     handleChange: PropTypes.func.isRequired,
+    setFieldValue: PropTypes.func.isRequired,
   };
 
   async componentDidMount() {
@@ -53,7 +56,7 @@ class Product extends Component {
   };
 
   render() {
-    const { handleSubmit, errors, values, handleChange } = this.props;
+    const { handleSubmit, errors, values, handleChange, setFieldValue } = this.props;
     const { id } = this.props.navigation.state.params;
 
     return (
@@ -61,52 +64,57 @@ class Product extends Component {
         <View style={styles.productContainer}>
           <View style={styles.productItem}>
             <TextInput
+              style={styles.input}
               placeholder="Título"
               type="text"
               name="title"
               value={values.title}
-              onChange={handleChange}
+              onChangeText={text => setFieldValue('title', text)}
             />
             {!!errors.title && <Text style={styles.productError}>{errors.title}</Text>}
           </View>
           <View style={styles.productItem}>
             <TextInput
+              style={styles.input}
               placeholder="Descrição"
               type="text"
               name="description"
               value={values.description}
-              onChange={handleChange}
+              onChangeText={text => setFieldValue('description', text)}
             />
             {!!errors.description && <Text style={styles.productError}>{errors.description}</Text>}
           </View>
           <View style={styles.productItem}>
             <TextInput
+              style={styles.input}
               placeholder="Cor"
               type="text"
               name="color"
               value={values.color}
-              onChange={handleChange}
+              onChangeText={text => setFieldValue('color', text)}
             />
             {!!errors.color && <Text style={styles.productError}>{errors.color}</Text>}
           </View>
           <View style={styles.productItem}>
             <TextInput
+              style={styles.input}
               placeholder="Tamanho"
               type="number"
               name="size"
               value={values.size}
-              onChange={handleChange}
+              onChangeText={text => setFieldValue('size', text)}
+              keyboardType = 'numeric'
             />
             {!!errors.size && <Text style={styles.productError}>{errors.size}</Text>}
           </View>
 
           <View className="actions">
-            <TouchableOpacity type="submit" onPress={handleSubmit}>
-              <Text>Salvar dados</Text>
+            <TouchableOpacity style={styles.actionButton} type="submit" onPress={handleSubmit}>
+              <Text style={styles.actionButtonText}>Salvar dados</Text>
             </TouchableOpacity>
             {id ? (
-              <TouchableOpacity type="button" onPress={this.deleteProduct}>
-                <Text>Excluir produto</Text>
+              <TouchableOpacity style={styles.actionButton} type="button" onPress={this.deleteProduct}>
+                <Text style={styles.actionButtonText}>Excluir produto</Text>
               </TouchableOpacity>
             ) : null}
           </View>

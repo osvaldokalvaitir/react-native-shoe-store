@@ -3,7 +3,7 @@ import api from '~/services/api';
 
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 
-import styles from '~/styles';
+import styles from './styles';
 
 class Main extends Component {
   static navigationOptions = {

@@ -1,16 +1,16 @@
 import { StyleSheet } from 'react-native';
-import colors from '~/styles';
+import { colors, metrics } from '~/styles';
 
 const styles = StyleSheet.create({
   addProductButton: {
     alignItems: 'center',
     backgroundColor: colors.primary,
     borderColor: colors.primary,
-    borderRadius: 5,
+    borderRadius: metrics.baseRadius,
     borderWidth: 2,
     height: 42,
     justifyContent: 'center',
-    margin: 20,
+    margin: metrics.baseMargin * 2,
   },
 
   addProductButtonText: {
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
 
   list: {
-    padding: 20,
+    padding: metrics.basePadding,
   },
 
   productButton: {
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     height: 42,
     justifyContent: 'center',
-    marginTop: 10,
+    marginTop: metrics.baseMargin,
   },
 
   productButtonText: {
@@ -50,15 +50,15 @@ const styles = StyleSheet.create({
     borderColor: colors.light,
     borderRadius: 5,
     borderWidth: 1,
-    marginBottom: 20,
-    padding: 20,
+    marginBottom: metrics.baseMargin * 2,
+    padding: metrics.basePadding,
   },
 
   productDescription: {
     color: colors.regular,
     fontSize: 16,
     lineHeight: 24,
-    marginTop: 5,
+    marginTop: metrics.baseMargin / 2,
   },
 
   productTitle: {

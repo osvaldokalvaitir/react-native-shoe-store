@@ -4,6 +4,7 @@ import { colors, metrics } from '~/styles';
 const styles = StyleSheet.create({
   actions: {
     display: 'flex',
+    flexDirection: 'row',
     justifyContent: 'space-between',
   },
   actionButton: {
@@ -14,6 +15,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     height: 42,
     justifyContent: 'center',
+    paddingHorizontal: metrics.basePadding,
   },
   actionButtonText: {
     color: colors.white,
@@ -21,9 +23,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   container: {
-    backgroundColor: colors.lighter, // '#fafafa'
+    backgroundColor: colors.secundary,
     flex: 1,
   },
+  containerSlider: {
+    backgroundColor: colors.white,
+    borderRadius: metrics.baseRadius,
+    height: 90,
+    padding: metrics.basePadding,
+  },  
   input: {
     backgroundColor: colors.white,
     borderRadius: metrics.baseRadius,
@@ -42,6 +50,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 3,
   },
+  sliderTrack: {
+    backgroundColor: colors.lighter,
+  },
+  sliderThumb: {
+    backgroundColor: colors.primary,
+  },  
 });
 
 export default styles;

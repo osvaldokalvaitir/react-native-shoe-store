@@ -11,7 +11,7 @@ export default {
 
   primary: '#DA552F',
   primaryDark: Color('#DA552F').darken(0.1),
-  secundary: '#6ADC00',
+  secundary: '#fafafa',
   success: '#9DCA83',
   danger: '#E37A7A',
 

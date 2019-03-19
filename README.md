@@ -66,6 +66,8 @@ Clique [aqui](https://github.com/osvaldokalvaitir/projects-settings/blob/master/
 
 - [react-native-cli](https://github.com/osvaldokalvaitir/projects-settings/blob/master/nodejs/libs/react-native-cli.md)
 
+- [react-native-slider](https://github.com/osvaldokalvaitir/projects-settings/blob/master/nodejs/libs/react-native-slider.md)
+
 - [Yup](https://github.com/osvaldokalvaitir/projects-settings/blob/master/nodejs/libs/yup.md)
 
 ### APIs

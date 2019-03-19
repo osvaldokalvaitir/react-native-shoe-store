@@ -7,9 +7,22 @@ import api from '~/services/api';
 
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 
+import Slider from 'react-native-slider';
+
 import styles from './styles';
+import { colors } from '~/styles';
 
 class Product extends Component {
+  static navigationOptions = ( props ) => {
+    const { id } = props.navigation.state.params;
+
+    if (id) {
+      return { title: 'Editar Produto' }
+    } {
+      return { title: 'Novo produto' }
+    }
+  };  
+
   static propTypes = {
     navigation: PropTypes.shape({
       state: PropTypes.shape({
@@ -45,11 +58,11 @@ class Product extends Component {
   }
 
   deleteProduct = async () => {
-    const { id } = this.props.navigation.state.params;
-    const { navigate } = this.props.navigation;
+    const { id, updateProducts } = this.props.navigation.state.params;
     try {
       await api.delete(`/products/${id}`);
-      navigate('Main');
+      this.props.navigation.navigate('Main');
+      updateProducts();
     } catch (err) {
       alert(`Não foi possível excluir o produto. Erro: ${err}`);
     }
@@ -96,19 +109,27 @@ class Product extends Component {
             {!!errors.color && <Text style={styles.productError}>{errors.color}</Text>}
           </View>
           <View style={styles.productItem}>
-            <TextInput
-              style={styles.input}
-              placeholder="Tamanho"
-              type="number"
-              name="size"
-              value={values.size}
-              onChangeText={text => setFieldValue('size', text)}
-              keyboardType = 'numeric'
-            />
+            <View style={styles.containerSlider}>         
+              <Text>
+                Tamanho: {values.size}            
+              </Text>
+              <Slider
+                minimumTrackTintColor={colors.danger}
+                trackStyle={styles.sliderTrack}
+                thumbStyle={styles.sliderThumb}
+                name="size"
+                value={values.size}
+                minimumValue={30}
+                maximumValue={50}
+                step={1}
+                onValueChange={value => setFieldValue('size', value)}
+              >
+              </Slider>
+            </View>
             {!!errors.size && <Text style={styles.productError}>{errors.size}</Text>}
           </View>
 
-          <View className="actions">
+          <View style={styles.actions}>
             <TouchableOpacity style={styles.actionButton} type="submit" onPress={handleSubmit}>
               <Text style={styles.actionButtonText}>Salvar dados</Text>
             </TouchableOpacity>
@@ -129,7 +150,7 @@ export default withFormik({
     title: '',
     description: '',
     color: '',
-    size: 0,
+    size: 40,
   }),
 
   validateOnChange: false,
@@ -143,11 +164,12 @@ export default withFormik({
   }),
 
   handleSubmit: async (values, { props }) => {
-    const { id } = props.navigation.state.params;
+    const { id, updateProducts } = props.navigation.state.params;
 
     try {
       await api.postOrPut('products', id, values);
       props.navigation.navigate('Main');
+      updateProducts();
     } catch (err) {
       alert(`Não foi possível salvar os dados. Erro: ${err}`);
     }

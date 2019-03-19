@@ -32,6 +32,11 @@ class Main extends Component {
     });
   };
 
+  updateProducts = async () => {
+    await this.setState({});
+    this.loadProducts();
+  }
+
   loadMore = () => {
     const { page, productInfo } = this.state;
 
@@ -50,7 +55,7 @@ class Main extends Component {
       <TouchableOpacity
         style={styles.productButton}
         onPress={() => {
-          this.props.navigation.navigate('Product', { id: item._id });
+          this.props.navigation.navigate('Product', { id: item._id, updateProducts: this.updateProducts });
         }}
       >
         <Text style={styles.productButtonText}>Acessar</Text>
@@ -64,7 +69,7 @@ class Main extends Component {
         <TouchableOpacity
           style={styles.addProductButton}
           onPress={() => {
-            this.props.navigation.navigate('Product', {});
+            this.props.navigation.navigate('Product', { updateProducts: this.updateProducts });
           }}
         >
           <Text style={styles.addProductButtonText}>Adicionar</Text>

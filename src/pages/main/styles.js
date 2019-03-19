@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
 
   container: {
-    backgroundColor: colors.lighter, // '#fafafa'
+    backgroundColor: colors.secundary,
     flex: 1,
   },
 

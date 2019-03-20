@@ -32,11 +32,6 @@ class Main extends Component {
     });
   };
 
-  updateProducts = async () => {
-    await this.setState({});
-    this.loadProducts();
-  }
-
   loadMore = () => {
     const { page, productInfo } = this.state;
 
@@ -62,6 +57,11 @@ class Main extends Component {
       </TouchableOpacity>
     </View>
   );
+
+  updateProducts = async () => {
+    await this.setState({ docs: [], productInfo: {}, page: 1 });
+    this.loadProducts(); 
+  }
 
   render() {
     return (

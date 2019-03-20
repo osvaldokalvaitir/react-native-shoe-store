@@ -28,6 +28,7 @@ class Product extends Component {
       state: PropTypes.shape({
         params: PropTypes.shape({
           id: PropTypes.string,
+          updateProducts: PropTypes.func.isRequired,
         }),
       }),        
     }).isRequired,
@@ -61,8 +62,8 @@ class Product extends Component {
     const { id, updateProducts } = this.props.navigation.state.params;
     try {
       await api.delete(`/products/${id}`);
-      this.props.navigation.navigate('Main');
       updateProducts();
+      this.props.navigation.navigate('Main');
     } catch (err) {
       alert(`Não foi possível excluir o produto. Erro: ${err}`);
     }
@@ -168,8 +169,8 @@ export default withFormik({
 
     try {
       await api.postOrPut('products', id, values);
-      props.navigation.navigate('Main');
       updateProducts();
+      props.navigation.navigate('Main');
     } catch (err) {
       alert(`Não foi possível salvar os dados. Erro: ${err}`);
     }

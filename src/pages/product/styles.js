@@ -2,11 +2,6 @@ import { StyleSheet } from 'react-native';
 import { colors, metrics } from '~/styles';
 
 const styles = StyleSheet.create({
-  actions: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
   actionButton: {
     alignItems: 'center',
     backgroundColor: colors.primary,
@@ -22,6 +17,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+  actions: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   container: {
     backgroundColor: colors.secundary,
     flex: 1,
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     borderRadius: metrics.baseRadius,
     height: 90,
     padding: metrics.basePadding,
-  },  
+  },
   input: {
     backgroundColor: colors.white,
     borderRadius: metrics.baseRadius,
@@ -41,21 +41,21 @@ const styles = StyleSheet.create({
   productContainer: {
     margin: metrics.baseMargin * 2,
   },
-  productItem: {
-    marginBottom: metrics.baseMargin * 2,
-  },
   productError: {
     color: colors.danger,
     fontSize: 15,
     fontWeight: 'bold',
     marginTop: 3,
   },
-  sliderTrack: {
-    backgroundColor: colors.lighter,
+  productItem: {
+    marginBottom: metrics.baseMargin * 2,
   },
   sliderThumb: {
     backgroundColor: colors.primary,
-  },  
+  },
+  sliderTrack: {
+    backgroundColor: colors.lighter,
+  },
 });
 
 export default styles;

@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { withFormik } from 'formik';
+import { compose, lifecycle } from 'recompose';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 
 import api from '~/services/api';
 
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import {
+  View, Text, TextInput, TouchableOpacity,
+} from 'react-native';
 
 import Slider from 'react-native-slider';
 
@@ -13,15 +16,10 @@ import styles from './styles';
 import { colors } from '~/styles';
 
 class Product extends Component {
-  static navigationOptions = ( props ) => {
-    const { id } = props.navigation.state.params;
-
-    if (id) {
-      return { title: 'Editar Produto' }
-    } {
-      return { title: 'Novo produto' }
-    }
-  };  
+  // O navigationOptions não está funcionando por causa do lifecycle
+  static navigationOptions = ({ navigation }) => ({
+    title: (navigation.state.params.id) ? 'Editar Produto' : 'Novo produto' }
+  );
 
   static propTypes = {
     navigation: PropTypes.shape({
@@ -30,7 +28,7 @@ class Product extends Component {
           id: PropTypes.string,
           updateProducts: PropTypes.func.isRequired,
         }),
-      }),        
+      }),
     }).isRequired,
     values: PropTypes.shape({
       title: PropTypes.string,
@@ -45,18 +43,8 @@ class Product extends Component {
       size: PropTypes.number,
     }).isRequired,
     handleSubmit: PropTypes.func.isRequired,
-    handleChange: PropTypes.func.isRequired,
     setFieldValue: PropTypes.func.isRequired,
   };
-
-  async componentDidMount() {
-    const { id } = this.props.navigation.state.params;
-
-    if (id) {
-      const response = await api.get(`/products/${id}`);
-      // enviar o response.data para o mapPropsToValues
-    }
-  }
 
   deleteProduct = async () => {
     const { id, updateProducts } = this.props.navigation.state.params;
@@ -70,7 +58,9 @@ class Product extends Component {
   };
 
   render() {
-    const { handleSubmit, errors, values, handleChange, setFieldValue } = this.props;
+    const {
+      handleSubmit, errors, values, setFieldValue,
+    } = this.props;
     const { id } = this.props.navigation.state.params;
 
     return (
@@ -85,7 +75,9 @@ class Product extends Component {
               value={values.title}
               onChangeText={text => setFieldValue('title', text)}
             />
-            {!!errors.title && <Text style={styles.productError}>{errors.title}</Text>}
+            {!!errors.title && (
+              <Text style={styles.productError}>{errors.title}</Text>
+            )}
           </View>
           <View style={styles.productItem}>
             <TextInput
@@ -96,7 +88,9 @@ class Product extends Component {
               value={values.description}
               onChangeText={text => setFieldValue('description', text)}
             />
-            {!!errors.description && <Text style={styles.productError}>{errors.description}</Text>}
+            {!!errors.description && (
+              <Text style={styles.productError}>{errors.description}</Text>
+            )}
           </View>
           <View style={styles.productItem}>
             <TextInput
@@ -107,13 +101,13 @@ class Product extends Component {
               value={values.color}
               onChangeText={text => setFieldValue('color', text)}
             />
-            {!!errors.color && <Text style={styles.productError}>{errors.color}</Text>}
+            {!!errors.color && (
+              <Text style={styles.productError}>{errors.color}</Text>
+            )}
           </View>
           <View style={styles.productItem}>
-            <View style={styles.containerSlider}>         
-              <Text>
-                Tamanho: {values.size}            
-              </Text>
+            <View style={styles.containerSlider}>
+              <Text>{`Tamanho: ${values.size}`}</Text>
               <Slider
                 minimumTrackTintColor={colors.danger}
                 trackStyle={styles.sliderTrack}
@@ -124,18 +118,27 @@ class Product extends Component {
                 maximumValue={50}
                 step={1}
                 onValueChange={value => setFieldValue('size', value)}
-              >
-              </Slider>
+              />
             </View>
-            {!!errors.size && <Text style={styles.productError}>{errors.size}</Text>}
+            {!!errors.size && (
+              <Text style={styles.productError}>{errors.size}</Text>
+            )}
           </View>
 
           <View style={styles.actions}>
-            <TouchableOpacity style={styles.actionButton} type="submit" onPress={handleSubmit}>
+            <TouchableOpacity
+              style={styles.actionButton}
+              type="submit"
+              onPress={handleSubmit}
+            >
               <Text style={styles.actionButtonText}>Salvar dados</Text>
             </TouchableOpacity>
             {id ? (
-              <TouchableOpacity style={styles.actionButton} type="button" onPress={this.deleteProduct}>
+              <TouchableOpacity
+                style={styles.actionButton}
+                type="button"
+                onPress={this.deleteProduct}
+              >
                 <Text style={styles.actionButtonText}>Excluir produto</Text>
               </TouchableOpacity>
             ) : null}
@@ -146,33 +149,49 @@ class Product extends Component {
   }
 }
 
-export default withFormik({
-  mapPropsToValues: () => ({
-    title: '',
-    description: '',
-    color: '',
-    size: 40,
+export default compose(
+  lifecycle({
+    async componentDidMount() {
+      const { id } = this.props.navigation.state.params;
+
+      if (id) {
+        const product = await api.get(`/products/${id}`);
+
+        this.setState({ ...product.data });
+      }
+    },
   }),
 
-  validateOnChange: false,
-  validateOnBlur: false,
+  withFormik({
+    enableReinitialize: true,
 
-  validationSchema: Yup.object().shape({
-    title: Yup.string().required('Campo obrigatório'),
-    description: Yup.string().required('Campo obrigatório'),
-    color: Yup.string().required('Campo obrigatório'),
-    size: Yup.number().required('Campo obrigatório'),
+    mapPropsToValues: ({ title, description, color, size }) => ({
+      title: title || '',
+      description: description || '',
+      color: color || '',
+      size: (size && size.valueOf()) || 30,
+    }),
+
+    validateOnChange: false,
+    validateOnBlur: false,
+
+    validationSchema: Yup.object().shape({
+      title: Yup.string().required('Campo obrigatório'),
+      description: Yup.string().required('Campo obrigatório'),
+      color: Yup.string().required('Campo obrigatório'),
+      size: Yup.number().required('Campo obrigatório'),
+    }),
+
+    handleSubmit: async (values, { props }) => {
+      const { id, updateProducts } = props.navigation.state.params;
+
+      try {
+        await api.postOrPut('products', id, values);
+        updateProducts();
+        props.navigation.navigate('Main');
+      } catch (err) {
+        alert(`Não foi possível salvar os dados. Erro: ${err}`);
+      }
+    },
   }),
-
-  handleSubmit: async (values, { props }) => {
-    const { id, updateProducts } = props.navigation.state.params;
-
-    try {
-      await api.postOrPut('products', id, values);
-      updateProducts();
-      props.navigation.navigate('Main');
-    } catch (err) {
-      alert(`Não foi possível salvar os dados. Erro: ${err}`);
-    }
-  },
-})(Product);
+)(Product);

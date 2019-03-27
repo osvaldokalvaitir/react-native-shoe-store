@@ -103,6 +103,8 @@ Clique [aqui](https://github.com/osvaldokalvaitir/projects-settings/blob/master/
 
 - [react-native-slider](https://github.com/osvaldokalvaitir/projects-settings/blob/master/nodejs/libs/react-native-slider.md)
 
+- [recompose](https://github.com/osvaldokalvaitir/projects-settings/blob/master/nodejs/libs/recompose.md)
+
 - [Yup](https://github.com/osvaldokalvaitir/projects-settings/blob/master/nodejs/libs/yup.md)
 
 ### APIs

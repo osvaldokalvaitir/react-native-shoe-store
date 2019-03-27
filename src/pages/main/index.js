@@ -18,7 +18,7 @@ class Main extends Component {
 
   componentDidMount() {
     this.loadProducts();
-  }
+  };
 
   loadProducts = async (page = 1) => {
     const response = await api.get(`/products?page=${page}`);

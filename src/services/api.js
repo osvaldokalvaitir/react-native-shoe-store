@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://192.168.0.103:3001/api',
+  baseURL: 'http://192.168.0.104:3001/api',
 });
 
 api.postOrPut = (url, id, data, config = {}) => {

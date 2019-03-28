@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withFormik } from 'formik';
-import { compose, lifecycle } from 'recompose';
+import { compose, lifecycle, hoistStatics } from 'recompose';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 
@@ -16,10 +16,9 @@ import styles from './styles';
 import { colors } from '~/styles';
 
 class Product extends Component {
-  // O navigationOptions não está funcionando por causa do lifecycle
   static navigationOptions = ({ navigation }) => ({
-    title: (navigation.state.params.id) ? 'Editar Produto' : 'Novo produto' }
-  );
+    title: (navigation.state.params.id) ? 'Editar Produto' : 'Novo produto' 
+  });
 
   static propTypes = {
     navigation: PropTypes.shape({
@@ -149,7 +148,7 @@ class Product extends Component {
   }
 }
 
-export default compose(
+const enhance = compose(
   lifecycle({
     async componentDidMount() {
       const { id } = this.props.navigation.state.params;
@@ -194,4 +193,6 @@ export default compose(
       }
     },
   }),
-)(Product);
+);
+
+export default hoistStatics(enhance)(Product);
